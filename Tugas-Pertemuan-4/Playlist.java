@@ -9,13 +9,6 @@ public class Playlist {
     music = new Stack<String>();
   }
 
-  void addData(String data) {
-    music.add(data);
-  }
-
-  void removeTop() {}
-  void removeBottom() {}
-
   public static void tampilMenu(String menu) {
     switch(menu) {
       case "utama":
@@ -29,15 +22,17 @@ public class Playlist {
         break;
       case "tambah-lagu":
         System.out.println("----------     Tambah Lagu    --------------");
-        System.out.println("[1] Tambah Lagu dari Atas");
-        System.out.println("[2] Tambah Lagu dari Bawah");
+        System.out.println("[1] Tambah Lagu ");
+        //System.out.println("[1] Tambah Lagu dari Atas");
+        //System.out.println("[2] Tambah Lagu dari Bawah");
         System.out.println("[0] Kembali ke Menu");
         System.out.println("--------------------------------------------");
         break;
       case "hapus-lagu":
         System.out.println("----------     Hapus Lagu    --------------");
-        System.out.println("[1] Hapus Lagu dari Atas");
-        System.out.println("[2] Hapus Lagu dari Bawah");
+        System.out.println("[1] Hapus Lagu");
+        //System.out.println("[1] Hapus Lagu dari Atas");
+        //System.out.println("[2] Hapus Lagu dari Bawah");
         System.out.println("[0] Kembali ke Menu");
         System.out.println("--------------------------------------------");
         break;
@@ -99,11 +94,55 @@ public class Playlist {
   }
 
   void hapusLagu() {
-    tampilMenu("hapus-lagu");
+    int isDone = 0;
+    while(isDone != 1) {
+      System.out.println("");
+
+      tampilMenu("hapus-lagu");
+
+      Scanner input = new Scanner(System.in);
+      System.out.print("Pilih Menu : ");
+      int menu = input.nextInt();
+
+      System.out.println("");
+
+      switch(menu) {
+        case 1:
+          music.pop();
+          isDone = 1;
+          break;
+        case 0:
+          isDone = 1;
+          break;
+      }
+
+    } 
   }
 
   void hapusSemuaLagu() {
-    tampilMenu("hapus-semua-lagu");
+    int isDone = 0;
+    while(isDone != 1) {
+      System.out.println("");
+
+      tampilMenu("hapus-semua-lagu");
+
+      Scanner input = new Scanner(System.in);
+      System.out.print("Pilih Menu : ");
+      int menu = input.nextInt();
+
+      System.out.println("");
+
+      switch(menu) {
+        case 1:
+          music.clear();
+          isDone = 1;
+          break;
+        case 0:
+          isDone = 1;
+          break;
+      }
+
+    } 
   }
 
   public static void main(String[] args) {
