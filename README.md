@@ -1,3 +1,3 @@
 # data-structures_and_algorithms
 
-Collection of DS & A Projects and Solution Sets
+Collection of Projects and Solution Sets from Data Structures And Algorithms curriculum
