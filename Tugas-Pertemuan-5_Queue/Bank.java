@@ -1,4 +1,4 @@
-import java.util.ArrayDeque;
+import java.util.Arrays;
 
 public class Bank {
 
@@ -46,22 +46,25 @@ public class Bank {
     }
   }
 
-  public void resetAntrian() {
-    for(int i = 0; i < data.length; i++) {
-      if ( data[i] == null && i != palingBelakang ) {
-        data[i] = data[i + 1];
-      }
-    }
-  }
-
-  public void removeData(String elemen) {
+  public void removeElement(String elemen) {
     for (int i = 0; i < data.length; i++) {
-      if (data[i] == elemen) {
+      if ( data[i] == elemen ) {
         data[i] = null;
-        palingDepan++;
       }
     }
   } 
+
+  public void resetAntrian() {
+    for (int i = 0; i < palingBelakang - 1; i++) {
+      if ( data[i] == null && i != palingBelakang) {
+        data[i] = data[i + 1];
+        data[palingBelakang - 1] = null;
+        palingBelakang--;
+      } 
+    }
+  }
+
+
 
 
   public static void main(String[] args) {
@@ -76,8 +79,12 @@ public class Bank {
     mankiri.insert("D");
     mankiri.insert("E");
 
-    mankiri.removeData("C");
+    mankiri.removeElement("B");
+    mankiri.resetAntrian();
+
     mankiri.infoAntrian();
+
+
 
 
   }
@@ -86,4 +93,3 @@ public class Bank {
 }
 
 
-//Bank mandiri = new Bank();
