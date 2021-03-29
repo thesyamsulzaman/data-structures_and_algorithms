@@ -42,17 +42,23 @@ public class Bank {
 
   public void infoAntrian() {
     for(int i = 0; i < data.length; i++) {
-      System.out.println("Data ke " + (i + 1) + " adalah " + data[i]);
+      System.out.println("Antrian ke " + (i) + " adalah " + data[i]);
     }
   }
 
-  public void infoData(String elemen) {
+  public void resetAntrian() {
+    for(int i = 0; i < data.length; i++) {
+      if ( data[i] == null && i != palingBelakang ) {
+        data[i] = data[i + 1];
+      }
+    }
+  }
+
+  public void removeData(String elemen) {
     for (int i = 0; i < data.length; i++) {
       if (data[i] == elemen) {
-        System.out.println( elemen + " ditemukan");
-      }
-      else {
-        System.out.println( elemen + " tidak ditemukan");
+        data[i] = null;
+        palingDepan++;
       }
     }
   } 
@@ -64,18 +70,15 @@ public class Bank {
 
     System.out.println("Selamat Datang di Bank " + mankiri.nama);
 
-    mankiri.insert("Ahmad");
-    mankiri.insert("Basit");
-    mankiri.insert("Ujang");
-    mankiri.insert("James");
-    mankiri.insert("Rami");
+    mankiri.insert("A");
+    mankiri.insert("B");
+    mankiri.insert("C");
+    mankiri.insert("D");
+    mankiri.insert("E");
 
-    mankiri.remove();
+    mankiri.removeData("C");
+    mankiri.infoAntrian();
 
-    mankiri.infoAntrian();
-    System.out.println("Paling Depan    : " + mankiri.infoPalingDepan());
-    System.out.println("Paling Belakang : " + mankiri.infoPalingBelakang());
-    mankiri.infoAntrian();
 
   }
 
