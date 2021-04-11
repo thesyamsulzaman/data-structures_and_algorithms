@@ -26,9 +26,7 @@ public class Playground {
       switch(menu) {
         case 1: 
           menuMahasiswa();
-
       }
-
 
       System.out.print("Keluar [1 = ya, 0 = tidak ] ? : ");
       int confirm = scanner.nextInt();
