@@ -17,14 +17,12 @@ public class Sorting {
       number[position] = temp;
     }
 
-
     for (int i = 0; i < number.length; i++) {
       System.out.print( number[i] + " ");
     }
 
     System.out.println();
   }
-
 }
 
 
