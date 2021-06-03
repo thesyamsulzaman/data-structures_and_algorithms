@@ -20,8 +20,7 @@ public class Recursion {
   }
 
   public static int pangkat(int angka, int eksponen) {
-    int repeatTime = eksponen - 1;
-    if (repeatTime == 0 ) {
+    if (eksponen == 1 ) {
       return angka;
     } else {
       return angka * pangkat(angka, eksponen - 1); 
