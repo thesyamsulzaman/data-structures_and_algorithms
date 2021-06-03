@@ -8,9 +8,9 @@ public class Recursion {
     //System.out.println(pangkat(5, 2));
    
     // NO. 2
-    //for (int i = 0; i < 10; i++) {
-      //System.out.println((i + 1) + " : " + fibonacci(i));
-    //}
+    for (int i = 0; i < 10; i++) {
+      System.out.println((i + 1) + " : " + fibonacci(i));
+    }
     
     // NO. 3
     //System.out.println(deret(1));
@@ -41,7 +41,7 @@ public class Recursion {
       return 1;
     }
 
-    return (fibonacci(n - 1) + fibonacci(n - 2));
+    return (fibonacci(n - 2) + fibonacci(n - 1));
 
   }
 
