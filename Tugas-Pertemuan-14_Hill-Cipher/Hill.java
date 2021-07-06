@@ -63,9 +63,11 @@ public class Hill {
 
     // No. 3
     String encryptedName = encrypt("JULY");
-    //System.out.println(encryptedName);
-    String decryptedCode = decrypt("FKMH");
-    //System.out.println(decryptedCode);
+    System.out.println("July = " + encryptedName);
+
+    String decryptedCode = decrypt(encryptedName);
+
+    System.out.println(decryptedCode + " = July" );
 
   }
 
@@ -89,7 +91,7 @@ public class Hill {
       if ( i != 0 && i % 2 == 0 ) {
         partialCode = letters.subList(i - 2, i);
         lettersInNumeric = findNumericByPartial(partialCode);
-        finalResult += decryptCode(lettersInNumeric);
+        finalResult += convertToLetter(lettersInNumeric, "decrypt");
       }
     }
 
@@ -119,7 +121,7 @@ public class Hill {
       if ( i != 0 && i % 2 == 0 ) {
         partialName = letters.subList(i - 2, i);
         lettersInNumeric = findNumericByPartial(partialName);
-        finalResult += convertToLetter(lettersInNumeric);
+        finalResult += convertToLetter(lettersInNumeric, "encrypt");
       }
     }
 
@@ -127,25 +129,35 @@ public class Hill {
   }
 
 
-  public static String decryptCode(int[] numericArr) {
-    int numOne = (
-        (numericArr[0] * DECRYPTION_KEY[0][0]) + 
-        (numericArr[1] * DECRYPTION_KEY[1][0]) 
-    ) % MODULO_OPERATOR;
+  public static String convertToLetter(int[] numericArr, String processKey) {
+    int numOne = 0, 
+        numTwo = 0;
 
-    int numTwo = ( 
-        (numericArr[0] * DECRYPTION_KEY[0][1]) + 
-        (numericArr[1] * DECRYPTION_KEY[1][1]) 
-    ) % MODULO_OPERATOR;
+    switch(processKey) {
+      case "encrypt":
+        numOne = (
+          (numericArr[0] * ENCRYPTION_KEY[0][0]) + 
+          (numericArr[1] * ENCRYPTION_KEY[1][0])
+        );
+        numTwo = ( 
+          (numericArr[0] * ENCRYPTION_KEY[0][1]) + 
+          (numericArr[1] * ENCRYPTION_KEY[1][1]) 
+        );
+        break;
+      case "decrypt":
+        numOne = (
+          (numericArr[0] * DECRYPTION_KEY[0][0]) + 
+          (numericArr[1] * DECRYPTION_KEY[1][0]) 
+        ) % MODULO_OPERATOR;
 
-    return findLetterOfNumeric(numOne) + "" + findLetterOfNumeric(numTwo);
-  }
+        numTwo = ( 
+          (numericArr[0] * DECRYPTION_KEY[0][1]) + 
+          (numericArr[1] * DECRYPTION_KEY[1][1]) 
+        ) % MODULO_OPERATOR;
+        break;
+    }
 
-  public static String convertToLetter(int[] numericArr) {
-    int numOne = ( (numericArr[0] * ENCRYPTION_KEY[0][0]) + (numericArr[1] * ENCRYPTION_KEY[1][0]) );
-    int numTwo = ( (numericArr[0] * ENCRYPTION_KEY[0][1]) + (numericArr[1] * ENCRYPTION_KEY[1][1]) );
-
-    return findLetterOfNumeric(numOne) + "" + findLetterOfNumeric(numTwo);
+    return findLetterOfNumeric(numOne) + findLetterOfNumeric(numTwo);
   }
 
   public static int[] findNumericByPartial(List<Character> partial) {
